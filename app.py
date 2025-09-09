@@ -13,7 +13,7 @@ async def healthz():
 
 @app.get("/hello")
 async def healthz():
-    return {"ok": "hello"}
+    return {"ok": "hello there"}
 
 
 @app.get("/db-ping")
