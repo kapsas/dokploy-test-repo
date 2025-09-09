@@ -1,11 +1,20 @@
+import asyncpg
+import os
+
 from fastapi import FastAPI
-import os, asyncpg
 
 app = FastAPI()
+
 
 @app.get("/healthz")
 async def healthz():
     return {"ok": True}
+
+
+@app.get("/hello")
+async def healthz():
+    return {"ok": "hello"}
+
 
 @app.get("/db-ping")
 async def db_ping():
