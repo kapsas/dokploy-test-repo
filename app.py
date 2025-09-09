@@ -16,13 +16,13 @@ async def healthz():
     return {"ok": "hello there"}
 
 
-@app.post("/add-user")
+@app.get("/add-user")
 async def add_user(name: str, email: str):
     dsn = os.getenv("DATABASE_URL")
     conn = await asyncpg.connect(dsn)
     try:
         await conn.execute("INSERT INTO users (name, email) VALUES ($1, $2)", name, email)
-        return {"ok": True}
+        return {"ok": True, "user": {"name": name, "email": email}}
     finally:
         await conn.close()
 
